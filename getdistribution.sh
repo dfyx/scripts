@@ -3,6 +3,8 @@
 # This script was tested on:
 #  - Ubuntu
 #  - Debian
+#  - Gentoo
+#  - Redhat
 #  - OpenWRT
 #  - Mac OS X 10.6
 #  - cygwin
