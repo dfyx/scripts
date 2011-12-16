@@ -13,3 +13,8 @@ parameters. If one matching process is found, it will be killed immediately.
 If multiple processes are found, you are asked wether you wish to kill one,
 all or none of them. A known limitation right now is that you can't kill
 anything that has "grep" in its name.
+
+getdistribution
+---------------
+This script tries to identify the linux/BSD/whatever distribution it is running
+on and returns its short name such as `ubuntu`, `macosx` or `cygwin`.
