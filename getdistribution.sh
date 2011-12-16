@@ -21,7 +21,7 @@ else
 	SED_EXTREG='-E'		# BSD sed
 fi
 
-# Determine distribution
+# Determine distribution. uname variants are added by hand to avoid false positives
 if [ -f /etc/lsb[_-]release ]; then	# Ubunutu and maybe others
 	DISTRIBUTION=$(grep 'DISTRIB_ID=' /etc/lsb-release | head -n 1 | sed 's/DISTRIB_ID=//')
 elif [ $(ls /etc/*[-_]release 2>/dev/null | wc -l) -ne 0 ]; then		# Most other linuxes
@@ -30,8 +30,10 @@ elif [ $(ls /etc/*[-_]version 2>/dev/null | wc -l) -ne 0 ]; then		# Most other l
 	DISTRIBUTION=$(ls -1 /etc/*[-_]version 2>/dev/null | head -n 1 | sed $SED_EXTREG 's/^\/etc\/(.*)[-_]version$/\1/')
 elif uname -a | grep -i cygwin > /dev/null; then	# cygwin
 	DISTRIBUTION=cygwin
-elif uname -a | grep -i mingw32_nt > /dev/null; then
+elif uname -a | grep -i mingw32_nt > /dev/null; then	#mingw32
 	DISTRIBUTION=mingw32
+elif uname -a | grep -i hp-ux > /dev/null; then		#hpux
+	DISTRIBUTION=hpux
 elif which sw_vers 2>/dev/null > /dev/null; then	# Mac OS X and maybe others
 	DISTRIBUTION=$(sw_vers | grep ProductName | head -n 1 | sed $SED_EXTREG 's/^ProductName:[ \t]*//' | sed 's/ //g')
 fi
