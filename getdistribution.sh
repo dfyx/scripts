@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# This script was tested on Ubuntu, Debian, Mac OS X 10.6 and cygwin
+# This script was tested on:
+#  - Ubuntu
+#  - Debian
+#  - OpenWRT
+#  - Mac OS X 10.6
+#  - cygwin
+#  - Git bash for Windows (mingw32)
 # It should also work on most other unixes
 
 # Determine the sed parameter for extended regular expressions
@@ -16,8 +22,10 @@ fi
 # Determine distribution
 if [ -f /etc/lsb[_-]release ]; then	# Ubunutu and maybe others
 	DISTRIBUTION=$(grep 'DISTRIB_ID=' /etc/lsb-release | head -n 1 | sed 's/DISTRIB_ID=//')
-elif [ $(ls /etc/*[-_]{release,version} 2>/dev/null | wc -l) -ne 0 ]; then		# Most other linuxes
-	DISTRIBUTION=$(ls -1 /etc/*[-_]{release,version} 2>/dev/null | head -n 1 | sed $SED_EXTREG 's/^\/etc\/(.*)[-_](release|version)$/\1/')
+elif [ $(ls /etc/*[-_]release 2>/dev/null | wc -l) -ne 0 ]; then		# Most other linuxes
+	DISTRIBUTION=$(ls -1 /etc/*[-_]release 2>/dev/null | head -n 1 | sed $SED_EXTREG 's/^\/etc\/(.*)[-_]release$/\1/')
+elif [ $(ls /etc/*[-_]version 2>/dev/null | wc -l) -ne 0 ]; then		# Most other linuxes
+	DISTRIBUTION=$(ls -1 /etc/*[-_]version 2>/dev/null | head -n 1 | sed $SED_EXTREG 's/^\/etc\/(.*)[-_]version$/\1/')
 elif uname -a | grep -i cygwin > /dev/null; then	# cygwin
 	DISTRIBUTION=cygwin
 elif uname -a | grep -i mingw32_nt > /dev/null; then
