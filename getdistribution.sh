@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # This script was tested on:
 #  - Ubuntu
@@ -8,6 +8,7 @@
 #  - OpenWRT
 #  - Mac OS X 10.6
 #  - cygwin
+#  - AIX
 #  - Git bash for Windows (mingw32)
 # It should also work on most other unixes
 
@@ -34,6 +35,8 @@ elif uname -a | grep -i mingw32_nt > /dev/null; then	#mingw32
 	DISTRIBUTION=mingw32
 elif uname -a | grep -i hp-ux > /dev/null; then		#hpux
 	DISTRIBUTION=hpux
+elif uname -a | grep -i aix > /dev/null; then		#aix
+	DISTRIBUTION=aix
 elif which sw_vers 2>/dev/null > /dev/null; then	# Mac OS X and maybe others
 	DISTRIBUTION=$(sw_vers | grep ProductName | head -n 1 | sed $SED_EXTREG 's/^ProductName:[ \t]*//' | sed 's/ //g')
 fi
