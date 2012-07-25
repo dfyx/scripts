@@ -2,6 +2,7 @@
 
 # This script was tested on:
 #  - Ubuntu
+#  - Linux Mint
 #  - Debian
 #  - Gentoo
 #  - Redhat
